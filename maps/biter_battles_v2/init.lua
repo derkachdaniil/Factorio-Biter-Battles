@@ -282,7 +282,7 @@ function Public.forces()
 		game.forces[force.name].technologies["refined-flammables-5"].enabled = false
 		game.forces[force.name].technologies["refined-flammables-6"].enabled = false
 		game.forces[force.name].technologies["refined-flammables-7"].enabled = false
-		game.forces[force.name].technologies["physical-projectile-damage-6"].enabled = false
+		game.forces[force.name].technologies["physical-projectile-damage-7"].enabled = false
 		game.forces[force.name].technologies["cliff-explosives"].enabled = false
 		game.forces[force.name].research_queue_enabled = true
 		global.target_entities[force.index] = {}
