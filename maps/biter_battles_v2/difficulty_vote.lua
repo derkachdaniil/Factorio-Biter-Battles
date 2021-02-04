@@ -16,7 +16,6 @@ local difficulties = {
 	[7] = {name = "Ultra-Violence", str = "200%", value = 2, color = {r=0.45, g=0.00, b=0.00}, print_color = {r=0.7, g=0.0, b=0.00}},
 	[8] = {name = "Fun and Fast", str = "300%", value = 3, color = {r=0.55, g=0.00, b=0.00}, print_color = {r=0.9, g=0.0, b=0.00}}
 
-
 }
 
 local function difficulty_gui()
