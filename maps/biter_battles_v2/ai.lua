@@ -20,17 +20,17 @@ for x = vector_radius * -1, vector_radius, 1 do
 end
 local size_of_vectors = #attack_vectors.north
 
-local unit_type_raffle = {"biter", "mixed", "mixed", "spitter", "spitter"}
+local unit_type_raffle = {"biter", "mixed", "mixed","mixed", "spitter", "spitter"}
 local size_of_unit_type_raffle = #unit_type_raffle
 
 local threat_values = {
-	["small-spitter"] = 1.5,
+	["small-spitter"] = 2,
 	["small-biter"] = 1.5,
 	["medium-spitter"] = 4.5,
-	["medium-biter"] = 4.5,
-	["big-spitter"] = 13,
+	["medium-biter"] = 5,
+	["big-spitter"] = 10,
 	["big-biter"] = 13,
-	["behemoth-spitter"] = 38.5,
+	["behemoth-spitter"] = 35,
 	["behemoth-biter"] = 38.5,
 	["small-worm-turret"] = 8,
 	["medium-worm-turret"] = 16,
@@ -435,11 +435,35 @@ Public.unlock_satellite = function(event)
     end   
 end
 
+local function update_difficulty()
+    local tick = game.tick
+    -- wait for vote to end first
+	if tick < global.difficulty_votes_timeout then
+        return
+    end
+	local minute = tick / 3600
+    local current_diff = global.difficulty_vote_value
+    local next_diff = current_diff
+    for k, v in pairs(global.difficulty_increases[global.difficulty_vote_index]) do
+        if k > minute then break end
+        next_diff = v
+    end
+    if next_diff == current_diff then
+        return
+    end
+    game.print("Difficulty changed to "..math.round(next_diff*100, 2).."% at minute "..math.round(minute, 0))
+    global.difficulty_vote_value = next_diff
+end
+
+
 Public.raise_evo = function()
 	if global.freeze_players then return end
 	if not global.training_mode and (#game.forces.north.connected_players == 0 or #game.forces.south.connected_players == 0) then return end	
 	local amount = math.ceil(global.difficulty_vote_value * global.evo_raise_counter * 0.75)
 	
+	    update_difficulty()
+	
+
 	if not global.total_passive_feed_redpotion then global.total_passive_feed_redpotion = 0 end
 	global.total_passive_feed_redpotion = global.total_passive_feed_redpotion + amount
 	

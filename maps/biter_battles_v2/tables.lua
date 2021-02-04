@@ -8,32 +8,36 @@ Public.ammo_modified_forces_list = {"north", "south", "spectator"}
 -- ammo_modifier_dmg = base_damage * base_ammo_modifiers
 -- damage = base_damage + ammo_modifier_dmg
 Public.base_ammo_modifiers = {
-	["bullet"] = 0.2,
+	["bullet"] = 0,
 	["shotgun-shell"] = 1,
-	["flamethrower"] = -0.8,
+	["flamethrower"] = -(6/9),
+	["grenade"] = -(5/7),
 	["landmine"] = -0.9
 }
 
 -- turret attack modifier via set_turret_attack_modifier
 Public.base_turret_attack_modifiers = {
-	["flamethrower-turret"] = -0.8
+	["flamethrower-turret"] = -(6/9),
+	["laser-turret"] = 0.0
 }
 
 Public.upgrade_modifiers = {
 	["flamethrower"] = 0.02,
+	["flamethrower-turret"] = 0.02,
+	["laser-turret"] = 0.3,
 	["shotgun-shell"] = 0.6,
-	["grenade"] = 0.4,
-	["landmine"] = 0.03
+	["grenade"] = (6/7),
+	["landmine"] = 0.04
 }
 
 Public.food_values = {
-	["automation-science-pack"] =		{value = 0.000505, name = "automation science", color = "255, 50, 50"},
-	["logistic-science-pack"] =		{value = 0.00155, name = "logistic science", color = "50, 255, 50"},
-	["military-science-pack"] =		{value = 0.00755, name = "military science", color = "105, 105, 105"},
-	["chemical-science-pack"] = 		{value = 0.03, name = "chemical science", color = "100, 200, 255"},
-	["production-science-pack"] =		{value = 0.14, name = "production science", color = "150, 25, 255"},
-	["utility-science-pack"] =		{value = 0.18, name = "utility science", color = "210, 210, 60"},
-	["space-science-pack"] = 		{value = 1.0, name = "space science", color = "255, 255, 255"},
+	["automation-science-pack"] =		{value = 0.000501, name = "automation science", color = "255, 50, 50"},
+	["logistic-science-pack"] =		{value = 0.00141, name = "logistic science", color = "50, 255, 50"},
+	["military-science-pack"] =		{value = 0.00651, name = "military science", color = "105, 105, 105"},
+	["chemical-science-pack"] = 		{value = 0.02, name = "chemical science", color = "100, 200, 255"},
+	["production-science-pack"] =		{value = 0.1, name = "production science", color = "150, 25, 255"},
+	["utility-science-pack"] =		{value = 0.15, name = "utility science", color = "210, 210, 60"},
+	["space-science-pack"] = 		{value = 0.6, name = "space science", color = "255, 255, 255"},
 }
 
 Public.gui_foods = {}
