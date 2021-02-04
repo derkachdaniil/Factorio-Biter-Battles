@@ -60,25 +60,25 @@ local balance_functions = {
 		laser_buff(get_upgrade_modifier("laser-turret")*2,force_name)
 	end,
 	["energy-weapons-damage-1"] = function(force_name)
-		laser_buff(0.2,force_name)
+		laser_buff(0.25,force_name)
 	end,
 	["energy-weapons-damage-2"] = function(force_name)
-		laser_buff(0.2,force_name)
+		laser_buff(0.25,force_name)
 	end,
 	["energy-weapons-damage-3"] = function(force_name)
-		laser_buff(0.4,force_name)
+		laser_buff(0.5,force_name)
 	end,
 	["energy-weapons-damage-4"] = function(force_name)
-		laser_buff(0.4,force_name)
+		laser_buff(0.5,force_name)
 	end,
 	["energy-weapons-damage-5"] = function(force_name)
-		laser_buff(0.6,force_name)
+		laser_buff(0.75,force_name)
 	end,
 	["energy-weapons-damage-6"] = function(force_name)
-		laser_buff(0.8,force_name)
+		laser_buff(0.75,force_name)
 	end,
 	["energy-weapons-damage-7"] = function(force_name)
-		laser_buff(0.8,force_name)
+		laser_buff(1.0,force_name)
 	end,
 	
 	["stronger-explosives"] = function(force_name)
@@ -108,7 +108,7 @@ local balance_functions = {
 		proj_buff(0.6,force_name)
 	end,
 	["physical-projectile-damage-3"] = function(force_name)
-		proj_buff(0.6,force_name)
+		proj_buff(0.4,force_name)
 	end,
 	["physical-projectile-damage-4"] = function(force_name)
 		proj_buff(0.4,force_name)
@@ -117,10 +117,10 @@ local balance_functions = {
 		proj_buff(0.4,force_name)
 	end,
 	["physical-projectile-damage-6"] = function(force_name)
-		proj_buff(0.4,force_name)
+		proj_buff(0.65,force_name)
 	end,
 	["physical-projectile-damage-7"] = function(force_name)
-		proj_buff(1.0,force_name)
+		proj_buff(0.1,force_name)
 	end,
 
 }
