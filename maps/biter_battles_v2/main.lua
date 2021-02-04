@@ -42,13 +42,60 @@ end
 local function on_console_chat(event)
 	Functions.share_chat(event)
 end
+local function check_if_flamers_too_close(event,bot_build)
+	local radius_ =5;
+    local entity = event.created_entity
+	if entity.name~='flamethrower-turret' then
+		return 
+	end
+    if not entity.valid then
+        return
+    end
+	local flamers_count=0
+	for _, e in pairs(
+				entity.surface.find_entities_filtered(
+					{area = {{entity.position.x - radius_, entity.position.y - radius_}, {entity.position.x + radius_, entity.position.y + radius_}}}
+				)
+			) do
+				if e.valid and e.health then
+					local distance_from_center = math.sqrt((e.position.x - entity.position.x) ^ 2 + (e.position.y - entity.position.y) ^ 2)
+					if distance_from_center <= radius_ then
+						if e.name=='flamethrower-turret' then
+							flamers_count=flamers_count+1
+						end
+					end
+				end
+			end
+    
+    if flamers_count>1 then
+        local surface = entity.surface
+        surface.create_entity(
+			{
+                name = 'flying-text',
+                position = entity.position,
+                text = 'too close to other flamers',
+                color = {r = 0.82, g = 0.11, b = 0.11}
+            }
+        )
+		if bot_build==0 then
+            local player = game.players[event.player_index]
+            player.insert({name = entity.name, count = 1})
+		else
+			local inventory = event.robot.get_inventory(defines.inventory.robot_cargo)
+            inventory.insert({name = entity.name, count = 1})
+		end
+        entity.destroy()
+    end
+end
 
 local function on_built_entity(event)
+	check_if_flamers_too_close(event,0)
 	Functions.no_turret_creep(event)
 	Functions.add_target_entity(event.created_entity)
 end
 
 local function on_robot_built_entity(event)
+	check_if_flamers_too_close(event,1)
 	Functions.no_turret_creep(event)
 	Terrain.deny_construction_bots(event)
 	Functions.add_target_entity(event.created_entity)
